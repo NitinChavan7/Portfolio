@@ -194,7 +194,7 @@
             document.activeElement?.tagName || "",
           )
         )
-          navigator.clipboard?.writeText("akshayrchavan07@gmail.com");
+          navigator.clipboard?.writeText("nitin.k.chavan1001@gmail.com");
       });
       pal.onclick = (e) => {
         if (e.target === pal) closePal();
@@ -226,9 +226,13 @@
         const x = document.createElement("i");
         $("#heat").appendChild(x);
       }
-      $("#show404").onclick = () => $("#error404").classList.add("show");
-      $("#close404").onclick = () => $("#error404").classList.remove("show");
-      if (location.hash === "#404") $("#error404").classList.add("show");
+      $("#show404")?.addEventListener("click", () =>
+        $("#error404")?.classList.add("show"),
+      );
+      $("#close404")?.addEventListener("click", () =>
+        $("#error404")?.classList.remove("show"),
+      );
+      if (location.hash === "#404") $("#error404")?.classList.add("show");
       const secs = $$("section[id]"),
         links = $$(".navlinks a");
       const navObs = new IntersectionObserver(

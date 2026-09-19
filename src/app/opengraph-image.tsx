@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Akshay Ram Chavan — building product systems";
+export const alt = "Nitin Chavan - full stack developer portfolio";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -20,7 +20,7 @@ export default function OpenGraphImage() {
       }}
     >
       <div style={{ display: "flex", color: "#a6ffcb", fontSize: 24 }}>
-        AKSHAY RAM CHAVAN / ENGINEERING PORTFOLIO
+        NITIN CHAVAN / FULL STACK DEVELOPER
       </div>
       <div
         style={{
@@ -33,11 +33,11 @@ export default function OpenGraphImage() {
         }}
       >
         <span>BUILDING</span>
-        <span style={{ color: "#8cb4ff" }}>PRODUCT</span>
-        <span>SYSTEMS.</span>
+        <span style={{ color: "#8cb4ff" }}>WEB</span>
+        <span>APPLICATIONS.</span>
       </div>
       <div style={{ display: "flex", color: "#9299aa", fontSize: 25 }}>
-        Full Stack Engineer · Product Engineer · Backend-minded
+        React.js - Node.js - Express.js - PostgreSQL
       </div>
     </div>,
     size,

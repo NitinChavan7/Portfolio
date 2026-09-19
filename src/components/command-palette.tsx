@@ -15,8 +15,6 @@ export function CommandPalette({
   const [active, setActive] = useState(0);
   const dialog = useRef<HTMLDivElement>(null);
   const { setTheme, resolvedTheme } = useTheme();
-  // Commands intentionally capture the current theme; the keyboard effect refreshes with that state.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const commands = [
     ...siteConfig.nav.map((item) => ({
       label: `Go to ${item.label}`,
@@ -48,19 +46,23 @@ export function CommandPalette({
       icon: Moon,
       run: () => setTheme(resolvedTheme === "dark" ? "light" : "dark"),
     },
-    {
-      label: "Open GitHub",
-      icon: ExternalLink,
-      run: () =>
-        window.open(siteConfig.github, "_blank", "noopener,noreferrer"),
-    },
-    {
-      label: "Open LinkedIn",
-      icon: ExternalLink,
-      run: () =>
-        window.open(siteConfig.linkedin, "_blank", "noopener,noreferrer"),
-    },
-  ];
+    siteConfig.github
+      ? {
+          label: "Open GitHub",
+          icon: ExternalLink,
+          run: () =>
+            window.open(siteConfig.github, "_blank", "noopener,noreferrer"),
+        }
+      : null,
+    siteConfig.linkedin
+      ? {
+          label: "Open LinkedIn",
+          icon: ExternalLink,
+          run: () =>
+            window.open(siteConfig.linkedin, "_blank", "noopener,noreferrer"),
+        }
+      : null,
+  ].filter((command) => command !== null);
   useEffect(() => {
     const globalKey = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {

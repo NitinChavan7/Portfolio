@@ -90,30 +90,25 @@ test("local assets and résumé configuration are centralized", () => {
 
   expect(projects.match(/\/images\/projects\//g)).toHaveLength(12);
   expect(testimonials.match(/\/images\/testimonials\//g)).toHaveLength(4);
-  expect(site).toContain('resume: "/resume/akshay-ram-chavan-resume.pdf"');
-  expect(site).toContain('resumeDownloadName: "Akshay-Ram-Chavan-Resume.pdf"');
+  expect(site).toContain('resume: "/resume/nitin-chavan-resume.pdf"');
+  expect(site).toContain('resumeDownloadName: "Nitin-Chavan-Resume.pdf"');
   expect(sourceFiles).not.toMatch(/drive\.google|drive\.usercontent/);
 });
 
-test("requested skills, domains, and email actions are centralized", () => {
+test("resume skills, domains, and email actions are centralized", () => {
   const skills = readFileSync("src/data/skills.ts", "utf8");
   const experience = readFileSync("src/data/experience.ts", "utf8");
   const site = readFileSync("src/config/site.ts", "utf8");
 
-  expect(skills.match(/"Go"/g)).toHaveLength(1);
-  expect(skills.match(/"gRPC"/g)).toHaveLength(1);
-  expect(skills.match(/"Kubernetes"/g)).toHaveLength(1);
   expect(skills.match(/"JavaScript"/g)).toHaveLength(1);
-  expect(skills.match(/"Grafana"/g)).toHaveLength(1);
-  expect(experience).toContain('tag: "AI CRM"');
-  expect(experience).toContain('tag: "Banking"');
-  expect(experience).toContain('tag: "E-Comm"');
-  expect(experience).not.toMatch(/Banking Domain|E-Commerce Domain/);
-  expect(site).toContain('emailMailto: "mailto:akshayrchavan07@gmail.com"');
+  expect(skills).toContain('"PostgreSQL"');
+  expect(skills).toContain('"Payroll"');
+  expect(skills).toContain('"GitLab"');
+  expect(experience).toContain('tag: "HRMS"');
+  expect(experience).toContain('tag: "React"');
+  expect(experience).toContain("Futurionic Private Limited");
+  expect(site).toContain('emailMailto: "mailto:nitin.k.chavan1001@gmail.com"');
   expect(site).toContain(
-    'linkedin: "https://www.linkedin.com/in/akshay-chavan23/"',
-  );
-  expect(site).toContain(
-    '"https://mail.google.com/mail/?view=cm&fs=1&to=akshayrchavan07@gmail.com"',
+    '"https://mail.google.com/mail/?view=cm&fs=1&to=nitin.k.chavan1001@gmail.com"',
   );
 });

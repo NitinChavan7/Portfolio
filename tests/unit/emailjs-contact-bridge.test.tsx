@@ -4,6 +4,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
 } from "@testing-library/react";
 import emailjs from "@emailjs/browser";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -90,8 +91,10 @@ describe("EmailJS contact bridge", () => {
     expect(email).toHaveValue("");
     expect(message).toHaveValue("");
     expect(screen.getByRole("status")).toHaveTextContent(
-      "Message sent successfully. I’ll get back to you soon.",
+      "Message sent successfully. I will get back to you soon.",
     );
+    await waitFor(() => expect(screen.getByRole("dialog")).toHaveClass("is-open"));
+    expect(screen.getByRole("dialog")).toHaveTextContent("Message sent");
   });
 
   it("disables duplicate submission and announces the pending state", async () => {
@@ -107,13 +110,13 @@ describe("EmailJS contact bridge", () => {
     fireEvent.submit(form);
 
     expect(sendMock).toHaveBeenCalledTimes(1);
-    expect(screen.getByRole("button")).toBeDisabled();
-    expect(screen.getByRole("button")).toHaveTextContent("Sending…");
-    expect(screen.getByRole("status")).toHaveTextContent("Sending…");
+    expect(screen.getByRole("button", { name: /sending/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /sending/i })).toHaveTextContent("Sending...");
+    expect(screen.getByRole("status")).toHaveTextContent("Sending...");
 
     await act(async () => resolveSend({ status: 200, text: "OK" }));
-    expect(screen.getByRole("button")).toBeEnabled();
-    expect(screen.getByRole("button")).toHaveTextContent("Send message");
+    expect(screen.getByRole("button", { name: /send message/i })).toBeEnabled();
+    expect(screen.getByRole("button", { name: /send message/i })).toHaveTextContent("Send message");
   });
 
   it("preserves values and announces a failed request", async () => {
@@ -126,9 +129,35 @@ describe("EmailJS contact bridge", () => {
     expect(email).toHaveValue("visitor@example.com");
     expect(message).toHaveValue("  A useful message  ");
     expect(screen.getByRole("status")).toHaveTextContent(
-      "Message could not be sent. Please try email or WhatsApp instead.",
+      "Message could not be sent. Please use email or WhatsApp for now.",
     );
     expect(screen.getByRole("button")).toBeEnabled();
+  });
+
+  it("shows field validation messages before sending", async () => {
+    document.body.innerHTML = `
+      <form id="conversationForm" novalidate>
+        <label>Name<input name="name" required></label>
+        <label>Email<input name="email" type="email" required></label>
+        <label>Message<textarea name="message" required></textarea></label>
+        <button type="submit">Send message</button>
+        <p id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    `;
+    render(<EmailJsContactBridge />);
+    const form = document.querySelector<HTMLFormElement>("#conversationForm")!;
+
+    await act(async () => fireEvent.submit(form));
+
+    expect(sendMock).not.toHaveBeenCalled();
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "Please fix the highlighted fields.",
+    );
+    expect(screen.getByText("Enter your full name.")).toBeInTheDocument();
+    expect(screen.getByText("Enter a valid email address.")).toBeInTheDocument();
+    expect(
+      screen.getByText("Write at least 10 characters about the role or project."),
+    ).toBeInTheDocument();
   });
 
   it("does not send when configuration is missing", async () => {

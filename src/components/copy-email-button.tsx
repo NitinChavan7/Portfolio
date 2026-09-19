@@ -3,7 +3,7 @@
 import { Check, Copy } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-export const portfolioEmail = "akshayrchavan07@gmail.com";
+export const portfolioEmail = "nitin.k.chavan1001@gmail.com";
 
 export function fallbackCopyEmail(value: string) {
   const textarea = document.createElement("textarea");

@@ -1,7 +1,7 @@
 export default function Loading() {
   return (
     <div className="loading-screen" role="status">
-      <span>ARC</span>
+      <span>NC</span>
       <p>Loading engineering system…</p>
     </div>
   );

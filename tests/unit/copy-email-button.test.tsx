@@ -20,7 +20,7 @@ describe("Copy email action", () => {
         portfolioEmail,
       ),
     );
-    expect(portfolioEmail).toBe("akshayrchavan07@gmail.com");
+    expect(portfolioEmail).toBe("nitin.k.chavan1001@gmail.com");
     expect(screen.getByRole("button", { name: /copied/i })).toBeInTheDocument();
     expect(screen.getByRole("status")).toHaveTextContent(
       "Email copied to clipboard",

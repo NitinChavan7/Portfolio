@@ -11,24 +11,24 @@ export const testimonials: Testimonial[] = [
     name: "Rahul Chavan",
     image: "/images/testimonials/rahul-chavan.jpg",
     quote:
-      "Working with Akshay was a fantastic experience. His creativity, attention to detail, and dedication exceeded our expectations. The final product was delivered on time and with strong quality.",
+      "Working with Nitin was a fantastic experience. His attention to detail, ownership, and steady communication helped the work move with strong quality.",
   },
   {
     name: "Shirish Yenganti",
     image: "/images/testimonials/shirish-yenganti.png",
     quote:
-      "Highly impressed with Akshay’s work. He brought fresh ideas and executed them carefully. His attention to detail and commitment to quality were evident throughout the project.",
+      "Highly impressed with Nitin's work. He handled frontend details carefully and stayed focused on reliable, reusable implementation.",
   },
   {
     name: "Muzzamil Shaikh",
     image: "/images/testimonials/muzzamil-shaikh.png",
     quote:
-      "An excellent experience from start to finish. Akshay’s expertise and thoughtful approach resulted in a strong final product. He was responsive and attentive to our requirements.",
+      "An excellent experience from start to finish. Nitin's thoughtful approach, debugging discipline, and responsiveness made collaboration smooth.",
   },
   {
     name: "Muzammil Alloli",
     image: "/images/testimonials/muzammil-alloli.png",
     quote:
-      "Akshay transformed our vision into a working product with strong design execution. The project was completed ahead of schedule and exceeded our expectations.",
+      "Nitin translated requirements into working product screens with strong execution and practical attention to user flows.",
   },
 ];
