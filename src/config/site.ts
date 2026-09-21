@@ -1,10 +1,16 @@
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://nitinchavan7.github.io/portfolio";
+
 export const siteConfig = {
   name: "Nitin Chavan",
   shortName: "NC",
-  title: "Full Stack Developer",
+  title: "Full Stack Developer | React.js, Node.js, PostgreSQL",
   description:
-    "Full stack developer with 2+ years of experience delivering React.js interfaces, Node.js APIs, PostgreSQL-backed workflows, dashboards, admin panels, and business web applications.",
-  url: "https://example.com",
+    "I build production-ready React.js and Node.js web applications with reliable REST APIs, PostgreSQL-backed workflows, clean UI systems, and business-focused product delivery.",
+  shareTitle: "Nitin Chavan | Full Stack Developer",
+  shareDescription:
+    "Full stack developer in Hyderabad with 2+ years of production experience across React.js, Redux, Node.js, Express.js, PostgreSQL, HRMS, payroll, admin panels, and API-driven business applications.",
+  url: siteUrl,
   email: "nitin.k.chavan1001@gmail.com",
   emailMailto: "mailto:nitin.k.chavan1001@gmail.com",
   emailGmail:

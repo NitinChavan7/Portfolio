@@ -29,34 +29,52 @@ const jetBrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  applicationName: `${siteConfig.name} Portfolio`,
   title: {
-    default: `${siteConfig.name} - ${siteConfig.title}`,
+    default: siteConfig.shareTitle,
     template: `%s - ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: siteConfig.shareDescription,
   keywords: [
+    "Nitin Chavan",
     "Full Stack Developer",
     "React Developer",
     "Node.js Developer",
+    "Redux",
+    "Express.js",
     "HRMS",
     "Payroll",
+    "Hyderabad Developer",
     "React",
     "Node.js",
     "PostgreSQL",
+    "REST APIs",
   ],
   authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${siteConfig.name} - ${siteConfig.title}`,
-    description: siteConfig.description,
+    title: siteConfig.shareTitle,
+    description: siteConfig.shareDescription,
     type: "website",
     url: "/",
     siteName: siteConfig.name,
+    locale: "en_IN",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} - Full Stack Developer portfolio preview`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} - ${siteConfig.title}`,
-    description: siteConfig.description,
+    title: siteConfig.shareTitle,
+    description: siteConfig.shareDescription,
+    images: ["/opengraph-image"],
   },
 };
 

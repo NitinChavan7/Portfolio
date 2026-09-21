@@ -112,7 +112,7 @@ export function CustomCursor() {
   return (
     <>
       <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
-      <div ref={dotRef} className="cursor-dot" aria-hidden="true" />
+      <div ref={dotRef} className="cursor-core" aria-hidden="true" />
       <div ref={spotlightRef} className="cursor-spotlight" aria-hidden="true" />
     </>
   );

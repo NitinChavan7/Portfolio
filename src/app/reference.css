@@ -183,7 +183,7 @@ body.ready #boot {
   opacity: 0.28;
 }
 .cursor,
-.cursor-dot {
+.cursor-core {
   position: fixed;
   left: 0;
   top: 0;
@@ -200,7 +200,7 @@ body.ready #boot {
     width 0.2s,
     height 0.2s;
 }
-.cursor-dot {
+.cursor-core {
   width: 5px;
   height: 5px;
   background: white;
@@ -1512,7 +1512,7 @@ main {
     grid-column: span 6;
   }
   .cursor,
-  .cursor-dot {
+  .cursor-core {
     display: none;
   }
 }
@@ -1969,7 +1969,7 @@ main {
     transition-duration: 0.01ms !important;
   }
   .cursor,
-  .cursor-dot,
+  .cursor-core,
   #stars,
   .spot {
     display: none;
@@ -2244,7 +2244,7 @@ nextjs-portal,
 .cursor-ring,
 .cursor-spotlight,
 .cursor,
-.cursor-dot {
+.cursor-core {
   display: none !important;
 }
 .next-image-fill {
@@ -3198,10 +3198,12 @@ nav {
 }
 
 .section#experience .timeline::before {
-  background: linear-gradient(180deg, transparent, rgba(77, 240, 176, 0.26), rgba(121, 168, 255, 0.16), transparent);
+  display: block;
+  background: linear-gradient(180deg, transparent, rgba(77, 240, 176, 0.3), rgba(121, 168, 255, 0.18), transparent);
 }
 
 .section#experience .job::before {
+  display: block;
   border: 2px solid rgba(77, 240, 176, 0.8);
   background:
     radial-gradient(circle, var(--accent) 0 32%, rgba(7, 16, 22, 0.95) 34% 100%);
@@ -3211,11 +3213,20 @@ nav {
 }
 
 .section#experience .job-date {
+  display: block;
   color: color-mix(in srgb, var(--muted) 78%, var(--accent));
   letter-spacing: 0.04em;
 }
 
+.section#experience .job {
+  grid-template-columns: 150px 1fr;
+  gap: 60px;
+  padding: 0 0 56px;
+}
+
 .section#experience .job-card {
+  width: 100%;
+  overflow: hidden;
   border-radius: 28px;
   border-color: rgba(214, 230, 242, 0.13);
   background:
@@ -3250,6 +3261,9 @@ nav {
 }
 
 .company-role-stack {
+  --role-dot-left: 15px;
+  --role-dot-size: 18px;
+  --role-line-x: calc(var(--role-dot-left) + (var(--role-dot-size) / 2));
   position: relative;
   display: grid;
   gap: 16px;
@@ -3258,21 +3272,25 @@ nav {
 
 .company-role-stack::before {
   content: "";
+  display: none;
   position: absolute;
-  left: 17px;
-  top: 24px;
-  bottom: 24px;
-  width: 1px;
+  left: var(--role-line-x);
+  top: 29px;
+  bottom: 29px;
+  width: 2px;
+  transform: translateX(-50%);
   background: linear-gradient(
     180deg,
-    rgba(77, 240, 176, 0.5),
-    rgba(121, 168, 255, 0.18)
+    rgba(77, 240, 176, 0.68),
+    rgba(121, 168, 255, 0.2)
   );
+  border-radius: 999px;
+  box-shadow: 0 0 16px rgba(77, 240, 176, 0.16);
 }
 
 .company-role-card {
   position: relative;
-  padding: 18px 18px 18px 48px;
+  padding: 18px;
   border: 1px solid rgba(214, 230, 242, 0.12);
   border-radius: 20px;
   background:
@@ -3282,27 +3300,31 @@ nav {
 
 .company-role-card::before {
   content: "";
+  display: none;
   position: absolute;
-  left: 12px;
+  left: var(--role-dot-left);
   top: 25px;
-  width: 11px;
-  height: 11px;
-  border: 3px solid rgba(77, 240, 176, 0.38);
+  width: var(--role-dot-size);
+  height: var(--role-dot-size);
+  border: 4px solid rgba(77, 240, 176, 0.3);
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 18px rgba(77, 240, 176, 0.38);
+  box-shadow:
+    0 0 0 6px rgba(77, 240, 176, 0.055),
+    0 0 18px rgba(77, 240, 176, 0.42);
 }
 
 .role-card-head {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
   align-items: baseline;
-  justify-content: space-between;
   gap: 16px;
   margin-bottom: 12px;
 }
 
 .role-card-head h4 {
   margin: 0;
+  min-width: 0;
   color: var(--text);
   font: 760 clamp(1.08rem, 1.55vw, 1.32rem) / 1.15 var(--font-display);
   letter-spacing: -0.035em;
@@ -3313,12 +3335,15 @@ nav {
   color: color-mix(in srgb, var(--muted) 78%, var(--accent));
   font: 650 0.72rem/1.2 var(--font-mono);
   letter-spacing: 0.08em;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .section#experience .job-card li {
   padding-left: 22px;
   line-height: 1.62;
   color: color-mix(in srgb, var(--muted) 90%, var(--text));
+  overflow-wrap: anywhere;
 }
 
 .section#experience .job-card li::before {
@@ -3331,6 +3356,18 @@ nav {
   box-shadow: 0 0 12px rgba(77, 240, 176, 0.4);
 }
 
+@media (max-width: 1120px) {
+  .role-card-head {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .role-card-head span {
+    text-align: left;
+    white-space: normal;
+  }
+}
+
 @media (max-width: 680px) {
   .section#experience .section-head h2 {
     font-size: clamp(2.2rem, 10.6vw, 3.55rem);
@@ -3338,29 +3375,91 @@ nav {
 
   .section#experience .job-card {
     border-radius: 22px;
-    padding: 22px;
+    padding: 18px;
+  }
+
+  .section#experience .timeline::before {
+    left: 8px;
+  }
+
+  .section#experience .job {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0 0 32px 34px;
+  }
+
+  .section#experience .job::before {
+    left: 2px;
+    top: 5px;
+  }
+
+  .section#experience .job-date {
+    padding-top: 0;
+    font-size: 0.68rem;
+  }
+
+  .company-role-stack {
+    --role-dot-left: 10px;
+    --role-dot-size: 16px;
+    gap: 12px;
   }
 
   .company-role-stack::before {
-    left: 13px;
+    top: 26px;
+    bottom: 26px;
   }
 
   .company-role-card {
-    padding: 16px 14px 16px 40px;
+    padding: 16px 14px;
     border-radius: 18px;
   }
 
   .company-role-card::before {
-    left: 8px;
+    top: 24px;
   }
 
   .role-card-head {
-    display: grid;
-    gap: 5px;
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .role-card-head span {
+    text-align: left;
+    white-space: normal;
   }
 
   .section#experience .job-card:hover {
     transform: none;
+  }
+}
+
+@media (max-width: 430px) {
+  .section#experience .job-card {
+    padding: 14px;
+  }
+
+  .company-role-stack {
+    --role-dot-left: 8px;
+    --role-dot-size: 14px;
+    gap: 10px;
+  }
+
+  .company-role-card {
+    padding: 14px 12px;
+  }
+
+  .company-role-card::before {
+    top: 23px;
+    border-width: 3px;
+  }
+
+  .role-card-head h4 {
+    font-size: 1.02rem;
+  }
+
+  .section#experience .job-card li {
+    padding-left: 18px;
+    font-size: 0.92rem;
   }
 }
 
@@ -5499,7 +5598,7 @@ nav::before {
   }
 
   .cursor-ring,
-  .cursor-dot,
+  .cursor-core,
   .cursor-spotlight {
     display: block !important;
     position: fixed;
@@ -5511,7 +5610,7 @@ nav::before {
     will-change: transform, opacity, width, height;
   }
 
-  .cursor-dot {
+  .cursor-core {
     z-index: 10003;
     width: 7px;
     height: 7px;
@@ -5560,7 +5659,7 @@ nav::before {
       background 260ms var(--ease);
   }
 
-  .cursor-dot[data-visible="true"],
+  .cursor-core[data-visible="true"],
   .cursor-ring[data-visible="true"] {
     opacity: 1;
   }
@@ -5578,7 +5677,7 @@ nav::before {
       rgba(121, 168, 255, 0.045);
   }
 
-  .cursor-dot[data-hovering="true"] {
+  .cursor-core[data-hovering="true"] {
     width: 9px;
     height: 9px;
     background: var(--accent);
@@ -5596,7 +5695,7 @@ nav::before {
     border-color: rgba(247, 251, 255, 0.92);
   }
 
-  .cursor-dot[data-pressed="true"] {
+  .cursor-core[data-pressed="true"] {
     width: 11px;
     height: 11px;
   }
@@ -5609,8 +5708,66 @@ nav::before {
   }
 
   .cursor-ring,
-  .cursor-dot,
+  .cursor-core,
   .cursor-spotlight {
     display: none !important;
   }
 }
+
+/* Final responsive polish for section labels and experience timeline */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1;
+  color: color-mix(in srgb, var(--accent) 70%, var(--accent2));
+}
+
+.eyebrow::before {
+  flex: 0 0 30px;
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, currentColor, color-mix(in srgb, currentColor 40%, transparent));
+  transform: translateY(0);
+}
+
+.section#experience .eyebrow,
+.section:has(.arch) .eyebrow,
+.section:has(.stack-grid) .eyebrow,
+.section:has(.signal-grid) .eyebrow,
+.section#labs .eyebrow,
+#projects .eyebrow,
+#social-proof .eyebrow,
+#contact .eyebrow {
+  color: color-mix(in srgb, var(--accent2) 58%, var(--accent));
+}
+
+.section#experience .eyebrow {
+  color: color-mix(in srgb, var(--accent) 76%, var(--accent2));
+}
+
+@media (max-width: 900px) {
+  .role-card-head {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .role-card-head span {
+    text-align: left;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 520px) {
+  .eyebrow {
+    gap: 10px;
+    font-size: 0.68rem;
+    letter-spacing: 0.11em;
+  }
+
+  .eyebrow::before {
+    flex-basis: 24px;
+    width: 24px;
+  }
+}
+
