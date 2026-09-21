@@ -316,7 +316,7 @@ test("project routes, resume, and not-found route remain available", async ({
   expect(sitemap).not.toContain("/projects/pipeline-builder");
   expect(sitemap).not.toContain("/projects/tracegraph");
   expect(
-    (await page.request.get("/resume/akshay-ram-chavan-resume.pdf")).ok(),
+    (await page.request.get("/resume/nitin-chavan-resume.pdf")).ok(),
   ).toBeTruthy();
 });
 
@@ -727,7 +727,7 @@ test("local images, résumé download, and ticker alignment are correct", async 
   const resume = page.locator(".hero-actions a").nth(1);
   await expect(resume).toHaveAttribute(
     "href",
-    "/resume/akshay-ram-chavan-resume.pdf",
+    "/resume/nitin-chavan-resume.pdf",
   );
   await expect(resume).toHaveAttribute(
     "download",
@@ -735,7 +735,7 @@ test("local images, résumé download, and ticker alignment are correct", async 
   );
   await expect(resume).not.toHaveAttribute("target", "_blank");
   expect(
-    (await page.request.get("/resume/akshay-ram-chavan-resume.pdf")).ok(),
+    (await page.request.get("/resume/nitin-chavan-resume.pdf")).ok(),
   ).toBe(true);
 
   expect(

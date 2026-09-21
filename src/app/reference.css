@@ -5245,9 +5245,11 @@ nav::before {
 
 /* Contact validation and success modal */
 .field-error {
-  min-height: 16px;
+  display: block;
+  min-height: 18px;
+  margin-top: 7px;
   color: #ff9aae;
-  font-size: 0.74rem;
+  font: 650 0.76rem/1.35 var(--font-body);
   line-height: 1.35;
 }
 
@@ -5257,6 +5259,38 @@ nav::before {
   box-shadow:
     0 0 0 3px rgba(255, 122, 150, 0.1),
     0 0 28px rgba(255, 122, 150, 0.06);
+}
+
+#contact .conversation-form[aria-busy="true"] {
+  pointer-events: none;
+}
+
+#contact .conversation-form button[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#contact .conversation-form button[type="submit"]:disabled {
+  opacity: 0.78;
+  cursor: wait;
+}
+
+.button-spinner {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  border: 2px solid rgba(6, 16, 22, 0.28);
+  border-top-color: #061016;
+  animation: contactSpinner 0.72s linear infinite;
+}
+
+@keyframes contactSpinner {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .email-success-modal {
@@ -5310,8 +5344,11 @@ nav::before {
   border-radius: 18px;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
   color: #061016;
-  font-size: 1.7rem;
-  font-weight: 900;
+  font: 900 0.92rem/1 var(--font-display);
+  letter-spacing: -0.04em;
+  box-shadow:
+    0 0 0 8px rgba(77, 240, 176, 0.08),
+    0 18px 42px rgba(77, 240, 176, 0.18);
 }
 
 .email-success-card h3 {

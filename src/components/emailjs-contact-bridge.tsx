@@ -61,7 +61,7 @@ export function EmailJsContactBridge() {
     successModal.setAttribute("hidden", "");
     successModal.innerHTML = `
       <div class="email-success-card" role="document">
-        <div class="email-success-mark" aria-hidden="true">✓</div>
+        <div class="email-success-mark" aria-hidden="true">OK</div>
         <h3 id="emailSuccessTitle">Message sent</h3>
         <p>I received your message. I will get back to you soon.</p>
         <button type="button" class="email-success-close">Close</button>
@@ -75,7 +75,6 @@ export function EmailJsContactBridge() {
       email: "contact-email-error",
       message: "contact-message-error",
     };
-    let startedAt = 0;
     let sending = false;
 
     const closeSuccessModal = () => {
@@ -173,12 +172,7 @@ export function EmailJsContactBridge() {
       return true;
     };
 
-    const markStarted = () => {
-      if (!startedAt) startedAt = performance.now();
-    };
-
     const handleInput = () => {
-      markStarted();
       clearAllErrors();
       status.textContent = "";
     };
@@ -196,14 +190,16 @@ export function EmailJsContactBridge() {
       if (sending || honeypot.value) return;
 
       if (!validateForm()) return;
-      if (!startedAt || performance.now() - startedAt < 1_800) {
-        status.textContent = "Please take a moment to review your message.";
-        return;
-      }
 
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+      const serviceId =
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ??
+        process.env.REACT_APP_EMAILJS_SERVICE_ID;
+      const templateId =
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ??
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+      const publicKey =
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ??
+        process.env.REACT_APP_EMAILJS_USER_ID;
       if (!serviceId || !templateId || !publicKey) {
         status.textContent = configurationMessage;
         return;
@@ -212,27 +208,33 @@ export function EmailJsContactBridge() {
       const values = new FormData(form);
       sending = true;
       submitButton.disabled = true;
-      submitButton.textContent = "Sending...";
+      submitButton.innerHTML = `<span class="button-spinner" aria-hidden="true"></span><span>Sending...</span>`;
       form.setAttribute("aria-busy", "true");
       status.textContent = "Sending...";
 
       try {
+        const name = String(values.get("name") || "").trim();
+        const email = String(values.get("email") || "").trim();
+        const message = String(values.get("message") || "").trim();
         await emailjs.send(
           serviceId,
           templateId,
           {
-            from_name: String(values.get("name") || "").trim(),
-            reply_to: String(values.get("email") || "").trim(),
+            name,
+            email,
+            from_name: name,
+            reply_to: email,
+            user_email: email,
+            to_email: "nitin.k.chavan1001@gmail.com",
             submitted_at: new Date().toISOString(),
             source_page: window.location.href,
-            message: String(values.get("message") || "").trim(),
+            message,
           },
           {
             publicKey,
           },
         );
         form.reset();
-        startedAt = 0;
         status.textContent = successMessage;
         openSuccessModal();
       } catch (error: unknown) {
@@ -266,12 +268,10 @@ export function EmailJsContactBridge() {
       ?.addEventListener("click", closeSuccessModal);
     successModal.addEventListener("click", handleModalClick);
     document.addEventListener("keydown", handleKeydown);
-    form.addEventListener("focusin", markStarted);
     form.addEventListener("input", handleInput);
     form.addEventListener("submit", submit);
 
     return () => {
-      form.removeEventListener("focusin", markStarted);
       form.removeEventListener("input", handleInput);
       form.removeEventListener("submit", submit);
       document.removeEventListener("keydown", handleKeydown);

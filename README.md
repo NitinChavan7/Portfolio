@@ -50,6 +50,9 @@ The contact form uses EmailJS and reads these variables from `.env.local`:
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=service_lulvf4t
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=template_q79v6cv
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=0hKpo709YyIpXzaQ9
+REACT_APP_EMAILJS_SERVICE_ID=service_lulvf4t
+REACT_APP_EMAILJS_TEMPLATE_ID=template_q79v6cv
+REACT_APP_EMAILJS_USER_ID=0hKpo709YyIpXzaQ9
 ```
 
 If sending fails with a Gmail grant error, reconnect the Gmail account in:

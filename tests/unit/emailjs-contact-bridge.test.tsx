@@ -49,6 +49,9 @@ beforeEach(() => {
 
 afterEach(() => {
   cleanup();
+  delete process.env.REACT_APP_EMAILJS_SERVICE_ID;
+  delete process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+  delete process.env.REACT_APP_EMAILJS_USER_ID;
   vi.restoreAllMocks();
 });
 
@@ -79,8 +82,12 @@ describe("EmailJS contact bridge", () => {
     expect(templateId).toBe("test-template");
     expect(options).toEqual({ publicKey: "test-public-key" });
     expect(parameters).toMatchObject({
+      name: "Akshay Visitor",
+      email: "visitor@example.com",
       from_name: "Akshay Visitor",
       reply_to: "visitor@example.com",
+      user_email: "visitor@example.com",
+      to_email: "nitin.k.chavan1001@gmail.com",
       source_page: window.location.href,
       message: "A useful message",
     });
@@ -170,6 +177,25 @@ describe("EmailJS contact bridge", () => {
     expect(screen.getByRole("status")).toHaveTextContent(
       "Email service is not configured yet. Please contact me through email or WhatsApp.",
     );
+  });
+
+  it("accepts REACT_APP EmailJS aliases when Next public names are absent", async () => {
+    delete process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    delete process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    delete process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    process.env.REACT_APP_EMAILJS_SERVICE_ID = "react-service";
+    process.env.REACT_APP_EMAILJS_TEMPLATE_ID = "react-template";
+    process.env.REACT_APP_EMAILJS_USER_ID = "react-public-key";
+    sendMock.mockResolvedValue({ status: 200, text: "OK" });
+    const { form } = mountForm();
+
+    await act(async () => fireEvent.submit(form));
+
+    expect(sendMock).toHaveBeenCalledTimes(1);
+    const [serviceId, templateId, , options] = sendMock.mock.calls[0];
+    expect(serviceId).toBe("react-service");
+    expect(templateId).toBe("react-template");
+    expect(options).toEqual({ publicKey: "react-public-key" });
   });
 
   it("does not send when the honeypot is populated", async () => {
