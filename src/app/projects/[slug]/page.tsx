@@ -64,9 +64,9 @@ export default async function ProjectPage({ params }: Props) {
       content: `${project.description} The implementation also includes intentional empty, loading, success, and failure states.`,
     },
     {
-      title: "Result & learnings",
+      title: "Result & impact",
       content:
-        "The finished application demonstrates end-to-end product ownership without inventing business outcomes. The work reinforced the value of designing state boundaries and failure behavior before adding visual polish.",
+        "The finished application demonstrates end-to-end product ownership through clear state boundaries, reliable failure handling, reusable UI decisions, and responsive execution across devices.",
     },
     {
       title: "Future improvements",
@@ -142,7 +142,7 @@ export default async function ProjectPage({ params }: Props) {
         </div>
       </div>
       <section className="related">
-        <p className="eyebrow">Related projects</p>
+        <p className="eyebrow">Related work</p>
         <div>
           {related.map((item) => (
             <Link href={`/projects/${item.slug}`} key={item.slug}>

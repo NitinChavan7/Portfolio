@@ -26,22 +26,16 @@ export function ContactForm() {
     defaultValues: { name: "", email: "", message: "", companyWebsite: "" },
   });
   const submit = async () => {
-    // Event-time measurement is intentionally impure; it prevents unrealistically fast bot submissions.
-    // eslint-disable-next-line react-hooks/purity
-    if (performance.now() - started < 1800) {
-      setStatus("Please take a moment to review your message.");
-      return;
-    }
     await new Promise((resolve) => setTimeout(resolve, 500));
     setStatus(
-      "Form validated. Email provider is not configured yet. Please use the email link beside this form.",
+      "Form validated. Please use the EmailJS contact form on the portfolio page.",
     );
   };
   return (
     <form
       className="contact-form"
       noValidate
-      onFocusCapture={() => !started && setStarted(performance.now())}
+      onFocusCapture={() => !started && setStarted(1)}
       onSubmit={handleSubmit(submit)}
     >
       <div className="form-top">
@@ -74,7 +68,7 @@ export function ContactForm() {
         {errors.email?.message}
       </p>
       <label>
-        What are you building?
+        Role, product, or requirement
         <textarea
           rows={5}
           aria-invalid={!!errors.message}
@@ -95,7 +89,7 @@ export function ContactForm() {
       </label>
       <button className="button primary" disabled={isSubmitting}>
         {isSubmitting ? (
-          "Validating…"
+          "Validating..."
         ) : (
           <>
             Validate message <Send size={16} />

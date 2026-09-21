@@ -11,24 +11,24 @@ export const testimonials: Testimonial[] = [
     name: "Rahul Chavan",
     image: "/images/testimonials/rahul-chavan.jpg",
     quote:
-      "Working with Nitin was a fantastic experience. His attention to detail, ownership, and steady communication helped the work move with strong quality.",
+      "Nitin brings clarity, ownership, and calm execution to the work. He pays attention to details and keeps communication steady throughout delivery.",
   },
   {
     name: "Shirish Yenganti",
     image: "/images/testimonials/shirish-yenganti.png",
     quote:
-      "Highly impressed with Nitin's work. He handled frontend details carefully and stayed focused on reliable, reusable implementation.",
+      "Nitin handles frontend implementation with care. His work is reliable, reusable, and aligned with the product requirement instead of only the screen.",
   },
   {
     name: "Muzzamil Shaikh",
     image: "/images/testimonials/muzzamil-shaikh.png",
     quote:
-      "An excellent experience from start to finish. Nitin's thoughtful approach, debugging discipline, and responsiveness made collaboration smooth.",
+      "Nitin is easy to collaborate with because he thinks through the requirement, debugs patiently, and responds quickly when changes are needed.",
   },
   {
     name: "Muzammil Alloli",
     image: "/images/testimonials/muzammil-alloli.png",
     quote:
-      "Nitin translated requirements into working product screens with strong execution and practical attention to user flows.",
+      "Nitin turns requirements into usable product screens with solid execution, clear user flows, and dependable follow-through.",
   },
 ];

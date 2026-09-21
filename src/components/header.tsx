@@ -63,8 +63,8 @@ export function Header({ onPalette }: { onPalette: () => void }) {
 
   return (
     <header className="site-header" ref={headerRef}>
-      <Link className="brand" href="/" aria-label="NC. home">
-        NC<span>.</span>
+      <Link className="brand" href="/" aria-label="NC home">
+        NC
       </Link>
       <nav
         id="primary-navigation"

@@ -280,7 +280,7 @@ export function ProjectCaseStudyModal() {
           </section>
           {caseStudy?.result && (
             <section>
-              <h4>Result / learning</h4>
+              <h4>Result / impact</h4>
               <p>{caseStudy.result}</p>
             </section>
           )}

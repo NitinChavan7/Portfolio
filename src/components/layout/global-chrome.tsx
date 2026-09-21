@@ -10,7 +10,14 @@ export function GlobalChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [palette, setPalette] = useState(false);
 
-  if (pathname === "/") return children;
+  if (pathname === "/") {
+    return (
+      <>
+        <CustomCursor />
+        {children}
+      </>
+    );
+  }
 
   return (
     <>

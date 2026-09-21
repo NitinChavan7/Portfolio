@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Nitin Chavan - full stack developer portfolio";
+export const alt = "Nitin Chavan - Full Stack Developer with 2+ years of experience";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -32,12 +32,12 @@ export default function OpenGraphImage() {
           lineHeight: 0.86,
         }}
       >
-        <span>BUILDING</span>
-        <span style={{ color: "#8cb4ff" }}>WEB</span>
-        <span>APPLICATIONS.</span>
+        <span>FULL STACK</span>
+        <span style={{ color: "#8cb4ff" }}>PRODUCT</span>
+        <span>DELIVERY.</span>
       </div>
       <div style={{ display: "flex", color: "#9299aa", fontSize: 25 }}>
-        React.js - Node.js - Express.js - PostgreSQL
+        2+ years - React.js - Node.js - PostgreSQL
       </div>
     </div>,
     size,

@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
-  "description": "Akshay Ram Chavan — product-minded full stack engineer portfolio",
+  "description": "Nitin Chavan - full stack developer portfolio",
   "private": true,
   "scripts": {
     "dev": "next dev",

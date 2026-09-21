@@ -4,7 +4,7 @@ export const skillGroups = [
     skills: [
       "React.js",
       "Redux",
-      "JavaScript ES6+",
+      "JavaScript",
       "HTML5",
       "CSS3",
       "Tailwind CSS",

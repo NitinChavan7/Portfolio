@@ -95,6 +95,18 @@ function referenceSkillCard(group: (typeof skillGroups)[number]) {
 }
 
 function referenceExperienceCard(item: (typeof experience)[number]) {
+  const roleCards = item.roles
+    .map(
+      (role) => `<section class="company-role-card">
+        <div class="role-card-head">
+          <h4>${escapeAttribute(role.title)}</h4>
+          <span>${escapeAttribute(role.date.toUpperCase())}</span>
+        </div>
+        <ul>${role.bullets.map((bullet) => `<li>${escapeAttribute(bullet)}</li>`).join("")}</ul>
+      </section>`,
+    )
+    .join("");
+
   return `<article class="job reveal">
     <div class="job-date">${escapeAttribute(item.date.toUpperCase())}</div>
     <div class="job-card">
@@ -104,7 +116,7 @@ function referenceExperienceCard(item: (typeof experience)[number]) {
           <div class="company">${escapeAttribute(item.company)}</div>
         </div>
       </div>
-      <ul>${item.bullets.map((bullet) => `<li>${escapeAttribute(bullet)}</li>`).join("")}</ul>
+      <div class="company-role-stack">${roleCards}</div>
     </div>
   </article>`;
 }
@@ -257,7 +269,7 @@ function getReferenceBody() {
     .replace(
       /<h1>[\s\S]*?<\/h1>\s*<div class="role-line">[\s\S]*?<\/div>/,
       `<h1>
-              Full Stack Developer<br /><span class="outline">React.js & Node.js</span><br />Web Applications
+              Full Stack Developer<br /><span class="outline">React.js & Node.js</span><br /><span class="hero-title-sub">Product Web Apps</span>
             </h1>
             <div class="role-line">
               React.js <span>·</span> Redux <span>·</span> Node.js <span>·</span> Express.js <span>·</span> PostgreSQL
@@ -267,10 +279,10 @@ function getReferenceBody() {
       /<p class="hero-copy">[\s\S]*?<\/p>\s*<div class="hero-actions">/,
       `<p class="hero-copy">
               I'm <strong>Nitin Chavan</strong>, a full stack developer with
-              <strong>2+ years</strong> of hands-on experience building responsive,
-              API-driven web applications with React.js, Redux, Node.js, Express.js,
-              and PostgreSQL. I focus on clean UI, REST API integration, form
-              validation, debugging, and performance-focused delivery.
+              <strong>2+ years</strong> of production experience delivering
+              responsive web applications with React.js, Redux, Node.js,
+              Express.js and PostgreSQL. I turn business requirements into clean
+              interfaces, reliable APIs and maintainable product workflows.
             </p>
             <div class="hero-actions">`,
     )
@@ -294,12 +306,12 @@ function getReferenceBody() {
               <article class="profile-info-card">
                 <span>Core stack</span>
                 <strong>React.js, Redux, Node.js</strong>
-                <p>Responsive UI, REST APIs, PostgreSQL queries, form validation and reusable components.</p>
+                <p>Production-ready interfaces, REST APIs, PostgreSQL queries, validation and reusable components.</p>
               </article>
               <article class="profile-info-card">
                 <span>Delivery focus</span>
                 <strong>Business web applications</strong>
-                <p>Clean screens, reliable data flows, debugging, optimization and production support.</p>
+                <p>Business-focused screens, stable data flows, debugging, optimization and production support.</p>
               </article>
             </div>`,
     )
@@ -326,13 +338,14 @@ function getReferenceBody() {
     .replace(
       /<p class="about-copy reveal">[\s\S]*?<\/p>\s*<div class="principles">/,
       `<p class="about-copy reveal">
-              I build across <strong>React.js and Redux interfaces</strong>,
+              I work across <strong>React.js and Redux interfaces</strong>,
               <strong>Node.js and Express.js APIs</strong>, and
-              <strong>PostgreSQL-backed business workflows</strong>. I focus on clean
-              forms, reusable components, validations, API response handling, SQL queries,
-              data-heavy screens, and practical debugging. HRMS and payroll are my strongest
-              production domain examples, but the same skills apply to SaaS products,
-              dashboards, admin panels, internal tools, and customer-facing web applications.
+              <strong>PostgreSQL-backed business workflows</strong>. I build
+              forms, reusable components, validations, API response handling,
+              SQL queries, data-heavy screens and performance-minded UI.
+              HRMS and payroll are strong production examples, and the same
+              execution fits SaaS products, dashboards, admin panels, internal
+              tools and customer-facing applications.
             </p>
             <div class="principles">`,
     )
@@ -349,21 +362,25 @@ function getReferenceBody() {
     .replace("Multiple layers.", "for production.")
     .replace(
       /I’m strongest where product complexity crosses boundaries:[\s\S]*?testing and delivery\./,
-      "A practical full stack toolkit for building responsive interfaces, REST API workflows, PostgreSQL-backed screens, testing, debugging and delivery.",
+      "A production-focused full stack toolkit for responsive interfaces, REST API workflows, PostgreSQL-backed screens, testing, debugging and delivery.",
     )
-    .replace("Request to outcome.", "Business logic to UI.")
-    .replace("Production request lifecycle", "Feature request lifecycle")
-    .replace("How I think", "Engineering flow")
-    .replace("SIMULATED LIVE TRAFFIC", "Production workflow")
+    .replace("Request to outcome.", "Requirement to working product.")
+    .replace("Production request lifecycle", "Feature delivery flow")
+    .replace("How I think", "Engineering delivery")
+    .replace("SIMULATED LIVE TRAFFIC", "Production-ready workflow")
     .replace(
-      "A portfolio for an engineer should show the system, not only the screen.",
-      "Clear product workflows, reliable APIs and predictable UI states.",
+      /A portfolio for an engineer should show the system,[\s\S]*?only the screen\./,
+      "I connect the requirement, UI state, API behavior and database flow so features are easier to build, test and maintain.",
     )
-    .replace("CLIENT<br />React / Next", "CLIENT<br />React / Redux")
+    .replace("CLIENT<br />React / Next", "UI LAYER<br />React / Redux")
     .replace("EDGE + AUTH<br />JWT / OAuth", "FORMS + STATE<br />Validation")
     .replace(
       "DATA + EVENTS<br />Postgres / Redis / Kafka",
       "DATA LAYER<br />PostgreSQL / SQL",
+    )
+    .replace(
+      /Validation, authorization, rate limiting, transactions,[\s\S]*?belong to the same product experience\./,
+      "Requirement analysis, form validation, REST API integration, PostgreSQL queries, error handling, testing and user feedback stay connected in one delivery flow.",
     )
     .replace(
       /<div class="timeline">[\s\S]*?<\/div>\s*<\/div>\s*<\/section>\s*<section class="section" id="projects">/,
@@ -377,26 +394,25 @@ function getReferenceBody() {
     .replace("Selected work", "Selected projects")
     .replace(
       "Products, systems<br />and experiments.",
-      "Full stack builds<br />with product thinking.",
+      "Full stack work<br />with product ownership.",
     )
     .replace(
       /Filter by the layer you are hiring for\. Every project is presented\s+as an engineering decision, not only a screenshot\./,
-      "A curated set of web applications showing frontend execution, backend APIs, database work, integrations and responsive product delivery.",
+      "A selected set of web applications showing frontend execution, backend APIs, database work, integrations and responsive product delivery.",
     )
     .replace("Machine coding & labs", "Applied profile")
     .replace(
       "How I practice under constraints.",
-      "Production work, UI delivery and engineering foundation.",
+      "Production modules, UI delivery and engineering foundation.",
     )
     .replace(
       "Focused builds that expose architecture, state, APIs and reasoning—useful signals beyond polished projects.",
-      "A concise view of the real modules, frontend workflows and education behind my full stack profile.",
+      "A focused view of the production modules, frontend delivery and education behind my profile.",
     )
     .replace("MACHINE CODING / WORKFLOW", "PRODUCTION HRMS")
-    .replace("Pipeline Builder", "HR Cosmo - HRMS Modules")
     .replace(
       /Drag, drop and connect configurable nodes;[\s\S]*?FastAPI\./,
-      "Built and maintained HRMS modules for employee onboarding, Aadhaar verification, payroll, overtime, arrears, exit management and full and final settlement workflows.",
+      "Delivered HRMS modules for onboarding, Aadhaar verification, payroll, overtime, arrears, exit management and full and final settlement workflows.",
     )
     .replace(
       "React Â· ReactFlow Â· Zustand Â· FastAPI",
@@ -409,7 +425,7 @@ function getReferenceBody() {
     .replace("FULL-STACK / PRODUCT", "FRONTEND WORKFLOW")
     .replace(
       /Authentication, task lifecycle, reusable UI and API-driven state[\s\S]*?full-stack exercise\./,
-      "Developed responsive customer engagement screens including agent panel, chat list, message threads, user session panel, notification states and empty views.",
+      "Developed responsive customer engagement screens including the agent panel, chat list, message threads, user session panel, notification states and empty views.",
     )
     .replace(
       "React Â· Node Â· Express Â· MongoDB",
@@ -419,7 +435,7 @@ function getReferenceBody() {
     .replace("SYSTEM DESIGN / PRODUCT", "EDUCATION")
     .replace(
       /Architecture exploration for uploads, processing, version[\s\S]*?AI\/media pipelines\./,
-      "B.Tech in Mechanical Engineering from Punyashlok Ahilyadevi Holkar Solapur University, completed in 2023 with CGPA 7.5 and a practical engineering mindset.",
+      "B.Tech in Mechanical Engineering from Punyashlok Ahilyadevi Holkar Solapur University, completed in 2023 with CGPA 7.5.",
     )
     .replace(
       "React Â· Go Â· Python Â· Kafka Â· Redis",
@@ -431,9 +447,8 @@ function getReferenceBody() {
     )
     .replace(
       /Focused builds that expose architecture, state, APIs and\s+reasoning[\s\S]{0,80}?polished projects\./,
-      "Real work from HRMS modules, responsive frontend screens and my engineering education.",
+      "Production HRMS modules, responsive frontend screens and engineering fundamentals in one clear snapshot.",
     )
-    .replace("<h3>Pipeline Builder</h3>", "<h3>HR Cosmo - HRMS Modules</h3>")
     .replace(
       /<footer>React[\s\S]{0,80}?ReactFlow[\s\S]{0,80}?FastAPI<\/footer>/,
       "<footer>React.js - Redux - Node.js - Express.js - PostgreSQL - REST APIs</footer>",
@@ -450,7 +465,7 @@ function getReferenceBody() {
     .replace("GitHub contribution signal", "Git, GitLab & team workflow")
     .replace(
       /Placeholder â€” connect GitHub GraphQL\/API during deployment for[\s\S]*?live contribution data\./,
-      "Comfortable with Git and GitLab for version control in agile team workflows.",
+      "Experienced with Git and GitLab for version control, code handoffs and agile team workflows.",
     )
     .replace("Problem-solving practice", "API and issue practice")
     .replace(
@@ -468,12 +483,12 @@ function getReferenceBody() {
     )
     .replace(
       /Live widgets can be connected later; the design reserves space\s+without blocking the initial load\./,
-      "The everyday engineering practices I use to ship maintainable UI, test APIs, debug issues and collaborate in agile teams.",
+      "The delivery habits I use to build maintainable UI, test APIs, debug issues and work clearly with a team.",
     )
     .replace("Version control", "Git, GitLab & team workflow")
     .replace(
       /Placeholder[\s\S]{0,120}?live contribution data\./,
-      "Version control, branch updates, code handoffs and Jira-based task progress for production web application work.",
+      "Version control, branch updates, code handoffs and Jira task updates for production web application delivery.",
     )
     .replace("API and issue practice", "API testing & issue resolution")
     .replace(
@@ -482,7 +497,7 @@ function getReferenceBody() {
     )
     .replace(
       "Focused on API testing, UI debugging and task tracking",
-      "I validate request and response flows, handle edge cases, trace UI issues and close tasks with clear delivery notes.",
+      "I validate request and response flows, handle edge cases, trace UI issues and close tasks with clear technical notes.",
     )
     .replace("Social proof", "Collaboration feedback")
     .replace(
@@ -491,26 +506,26 @@ function getReferenceBody() {
     )
     .replace(
       /Feedback from people who have collaborated with me on product and\s+engineering work\./,
-      "Short feedback from collaborators on communication, responsiveness, practical execution and attention to detail.",
+      "Feedback from collaborators on communication, ownership, responsiveness and attention to delivery details.",
     )
     .replace(
       /Need an engineer<br \/>who can own it\?/,
-      "Need a developer<br />who can ship?",
+      "Need a developer<br />who can deliver?",
     )
-    .replace("Start a conversation", "Let us build something")
+    .replace("Start a conversation", "Let's build something")
     .replace(
       /Need a developer<br \/>who can ship\?/,
       "Need a full stack<br />developer?",
     )
     .replace(
       /Open to Full Stack, Backend, Frontend and Product Engineering[\s\S]*?execution quality matters\./,
-      "Available for Full Stack Developer, React.js Developer and Node.js Developer roles. I can support responsive UI, REST API integration, PostgreSQL-backed workflows, debugging and production-ready feature delivery.",
+      "Available for Full Stack Developer, React.js Developer and Node.js Developer roles. I bring 2+ years of production experience across responsive UI, REST API integration, PostgreSQL-backed workflows, debugging and feature delivery.",
     )
-    .replace("Project inquiry", "Role or project inquiry")
+    .replace("Project inquiry", "Role or product discussion")
     .replace("EmailJS integration ready", "Direct message ready")
-    .replace("Tell me about the role, product or problem...", "Tell me about the role, product or workflow...")
+    .replace("Tell me about the role, product or problem...", "Tell me about the role, product or requirement...")
     .replace(
-      /<a\s+class="btn magnetic"\s+href="https:\/\/github\.com\/akshaychavan23031998"[\s\S]*?<\/a\s*>/,
+      /<a\s+class="btn magnetic"\s+href="https:\/\/github\.com\/NitinChavan7"[\s\S]*?<\/a\s*>/,
       "",
     )
     .replace(
@@ -553,7 +568,7 @@ function getReferenceBody() {
     )
     .replace(
       /<a\s+class="btn primary magnetic"\s+href="mailto:akshayrchavan07@gmail\.com"\s*>Email me ↗<\/a\s*>/,
-      `<a class="btn primary magnetic" href="${siteConfig.emailGmail}" target="_blank" rel="noopener noreferrer" aria-label="Email Akshay Ram Chavan using Gmail">Email me ↗</a>`,
+      `<a class="btn primary magnetic" href="${siteConfig.emailGmail}" target="_blank" rel="noopener noreferrer" aria-label="Email Nitin Chavan using Gmail">Email me ↗</a>`,
     );
 
   return homepage;

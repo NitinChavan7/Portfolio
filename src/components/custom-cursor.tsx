@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 const interactiveSelector =
-  "a, button, [role='button'], .project-card, .float-tag, input, textarea, select";
+  "a, button, [role='button'], .project-card, .project, .floating-tag, .btn, .icon-btn, input, textarea, select, label";
 
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -24,6 +24,8 @@ export function CustomCursor() {
     root.dataset.customCursor = "active";
     let targetX = -40;
     let targetY = -40;
+    let dotX = targetX;
+    let dotY = targetY;
     let ringX = targetX;
     let ringY = targetY;
     let spotlightX = targetX;
@@ -32,10 +34,13 @@ export function CustomCursor() {
     let visible = false;
 
     const render = () => {
+      dotX += (targetX - dotX) * 0.36;
+      dotY += (targetY - dotY) * 0.36;
       ringX += (targetX - ringX) * 0.18;
       ringY += (targetY - ringY) * 0.18;
       spotlightX += (targetX - spotlightX) * 0.09;
       spotlightY += (targetY - spotlightY) * 0.09;
+      dot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%)`;
       ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
       spotlight.style.transform = `translate3d(${spotlightX}px, ${spotlightY}px, 0) translate(-50%, -50%)`;
       frame = requestAnimationFrame(render);
@@ -50,7 +55,6 @@ export function CustomCursor() {
     const move = (event: PointerEvent) => {
       targetX = event.clientX;
       targetY = event.clientY;
-      dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%)`;
       if (!visible) {
         dot.dataset.visible = "true";
         ring.dataset.visible = "true";
@@ -66,6 +70,14 @@ export function CustomCursor() {
           : "false";
       spotlight.dataset.hovering = ring.dataset.hovering;
     };
+    const press = () => {
+      ring.dataset.pressed = "true";
+      dot.dataset.pressed = "true";
+    };
+    const release = () => {
+      ring.dataset.pressed = "false";
+      dot.dataset.pressed = "false";
+    };
     const leave = () => {
       dot.dataset.visible = "false";
       ring.dataset.visible = "false";
@@ -79,6 +91,8 @@ export function CustomCursor() {
 
     addEventListener("pointermove", move, { passive: true });
     addEventListener("pointerover", hover, { passive: true });
+    addEventListener("pointerdown", press, { passive: true });
+    addEventListener("pointerup", release, { passive: true });
     document.documentElement.addEventListener("mouseleave", leave);
     document.addEventListener("visibilitychange", visibility);
     start();
@@ -88,6 +102,8 @@ export function CustomCursor() {
       delete root.dataset.customCursor;
       removeEventListener("pointermove", move);
       removeEventListener("pointerover", hover);
+      removeEventListener("pointerdown", press);
+      removeEventListener("pointerup", release);
       document.documentElement.removeEventListener("mouseleave", leave);
       document.removeEventListener("visibilitychange", visibility);
     };

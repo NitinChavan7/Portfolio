@@ -47,7 +47,7 @@ test("homepage preserves the reference structure and interactions", async ({
     matchEngineCard.getByRole("link", { name: /source code/i }),
   ).toHaveAttribute(
     "href",
-    "https://github.com/akshaychavan23031998/Three-Way-Match-Engine",
+    "https://github.com/NitinChavan7/Three-Way-Match-Engine",
   );
   await expect(
     matchEngineCard.getByRole("link", { name: /live application/i }),
@@ -73,7 +73,7 @@ test("homepage preserves the reference structure and interactions", async ({
     traceGraphCard.getByRole("link", { name: /source code/i }),
   ).toHaveAttribute(
     "href",
-    "https://github.com/akshaychavan23031998/TraceGraph-Software-Incident-Dependency-Intelligence",
+    "https://github.com/NitinChavan7/TraceGraph-Software-Incident-Dependency-Intelligence",
   );
   await expect(
     traceGraphCard.getByRole("link", { name: /live application/i }),
@@ -92,7 +92,7 @@ test("homepage preserves the reference structure and interactions", async ({
     pipelineCard.getByRole("link", { name: /source code/i }),
   ).toHaveAttribute(
     "href",
-    "https://github.com/akshaychavan23031998/Pipeline-Builder",
+    "https://github.com/NitinChavan7/Pipeline-Builder",
   );
   await expect(
     pipelineCard.getByRole("link", { name: /live application/i }),
@@ -365,7 +365,7 @@ test("Rabbit alone uses a single-column mobile footer", async ({
   ).toBeVisible();
   await expect(actions.getByRole("link", { name: /Code/i })).toHaveAttribute(
     "href",
-    "https://github.com/akshaychavan23031998/MERN_Rabbit_Ecommerce",
+    "https://github.com/NitinChavan7/MERN_Rabbit_Ecommerce",
   );
   await expect(actions.getByRole("link", { name: /Live/i })).toHaveAttribute(
     "href",
@@ -520,32 +520,26 @@ test("reference source remains present and untouched by runtime", async () => {
   expect(fs.existsSync(reference)).toBe(true);
 });
 
-test("experience roles retain their content with one industry tag each", async ({
+test("experience section shows one Futurionic progression card", async ({
   page,
 }) => {
   await page.goto("/");
   await page.waitForTimeout(1900);
   await expect(page.locator(".job-card h3")).toHaveText([
-    "Software Development Engineer I",
-    "Product Engineer Intern",
-    "Junior Software Developer",
+    "Futurionic Private Limited",
   ]);
   await expect(page.locator(".job-card .company")).toHaveText([
-    "SuperAGI (formerly Contlo) · Bengaluru",
-    "MBB Labs Private Limited · Maybank · Bengaluru",
-    "Opethic Software Solutions LLP · Solapur",
+    "Hyderabad | Intern to Full-time progression",
   ]);
-  await expect(page.locator(".job-date")).toHaveText([
-    "NOV 2025 — APR 2026",
-    "JUN 2024 — NOV 2025",
-    "SEP 2023 — JAN 2024",
+  await expect(page.locator(".job-date")).toHaveText(["JAN 2024 - JUL 2026"]);
+  await expect(page.locator(".role-card-head h4")).toHaveText([
+    "Software Developer",
+    "Software Developer Intern",
   ]);
-  await expect(page.locator(".job-top > .pill")).toHaveText([
-    "AI CRM",
-    "Banking",
-    "E-Comm",
+  await expect(page.locator(".role-card-head span")).toHaveText([
+    "APR 2024 - JUL 2026",
+    "JAN 2024 - APR 2024",
   ]);
-  await expect(page.locator(".job-top > .pill")).toHaveCount(3);
   await expect(page.locator("#experience")).not.toContainText(
     /Banking Domain|E-Commerce Domain|Fintech|SaaS/,
   );

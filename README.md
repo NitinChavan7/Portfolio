@@ -1,32 +1,79 @@
-# Akshay Ram Chavan — engineering portfolio
+# Nitin Chavan - Full Stack Developer Portfolio
 
-A production-oriented Next.js portfolio based on the supplied engineering reference. Its graphite interface, mint/blue signals, capability map, request-to-production flow, real project media, and evidence-led copy communicate product ownership rather than a generic résumé.
+A premium, responsive portfolio for **Nitin Chavan**, a full stack developer with 2+ years of experience delivering React.js interfaces, Node.js APIs, PostgreSQL-backed workflows, dashboards, admin panels, and business web applications.
 
-## Stack and local development
+The portfolio presents professional experience, resume-backed skills, selected projects, delivery discipline, collaborator feedback, and an EmailJS-powered contact form.
 
-Node 20+ is recommended. Run `npm install`, copy `.env.example` to `.env.local` only when configuring a provider, then run `npm run dev`. Production uses `npm run build` followed by `npm run start`.
+## Tech Stack
 
-Scripts: `dev`, `build`, `start`, `lint`, `typecheck`, `format`, `format:check`, `test`, and `test:e2e`.
+- Next.js 16
+- React 19
+- TypeScript
+- CSS with custom responsive styling
+- EmailJS contact form
+- Vitest unit tests
+- Playwright end-to-end and responsive checks
 
-## Structure and content
+## Local Development
 
-- `src/app`: routes, metadata, manifest, robots, sitemap, error states
-- `src/components`: navigation, command palette, projects, carousel, form, providers
-- `src/config/site.ts`: identity, navigation, contact and social links
-- `src/data`: projects, skills, experience, testimonials
-- `public/images`: profile, nine project screenshots, four testimonial portraits
-- `public/resume`: downloadable résumé
-- `tests`: Vitest components and Playwright flows
-- `docs`: engineering and maintenance notes
+Use Node.js 20 or newer.
 
-Edit centralized data to change copy. Add a typed record to `src/data/projects.ts`, place its real image under `public/images/projects`, and ensure its slug is unique. Replace images without changing their stable paths, or update the corresponding data. Replace the résumé at `public/resume/akshay-ram-chavan-resume.pdf`.
+```bash
+npm install
+npm run dev
+```
 
-## Contact and deployment
+Common scripts:
 
-The form validates locally with React Hook Form and Zod, includes a honeypot and timing gate, and truthfully reports that no mail provider is configured. Follow `docs/email-integration.md` to add a server-side provider.
+```bash
+npm run lint
+npm run typecheck
+npm test
+npm run build
+```
 
-For Vercel, import the repository, keep the Next.js preset, add server-only environment variables, and deploy. Replace the placeholder domain in `src/config/site.ts` before launch, then confirm canonical, sitemap, and robots URLs.
+## Project Structure
 
-## Quality
+- `src/app` - routes, metadata, homepage, manifest, sitemap, robots
+- `src/components` - EmailJS bridge, command palette, UI helpers
+- `src/config/site.ts` - name, contact details, resume link, navigation
+- `src/data` - projects, skills, experience, testimonials
+- `public/images` - profile, project, and testimonial images
+- `public/resume/nitin-chavan-resume.pdf` - downloadable resume
+- `tests` - unit and browser test coverage
 
-Run `npm run format:check && npm run lint && npm run typecheck && npm test && npm run build`. Install browsers once with `npx playwright install chromium`, start the production build, then run `npm run test:e2e`. Responsive CSS removes sticky profile behavior on tablet/mobile, keeps 44px controls, respects reduced motion, and avoids horizontal overflow.
+## Contact Form Setup
+
+The contact form uses EmailJS and reads these variables from `.env.local`:
+
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=service_lulvf4t
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=template_q79v6cv
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=0hKpo709YyIpXzaQ9
+```
+
+If sending fails with a Gmail grant error, reconnect the Gmail account in:
+
+EmailJS Dashboard -> Email Services -> `service_lulvf4t` -> Reconnect Gmail.
+
+## Profile Details
+
+- Name: Nitin Chavan
+- Role: Full Stack Developer
+- Location: Hyderabad, India
+- Email: `nitin.k.chavan1001@gmail.com`
+- Phone: `+91 9325997861`
+- Resume: `public/resume/nitin-chavan-resume.pdf`
+
+## Quality Checks
+
+Before deployment, run:
+
+```bash
+npm run lint
+npm run typecheck
+npm test
+npm run build
+```
+
+The UI is designed to stay responsive across desktop, tablet, and mobile without horizontal overflow.

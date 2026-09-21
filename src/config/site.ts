@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "Nitin Chavan",
-  shortName: "NC.",
+  shortName: "NC",
   title: "Full Stack Developer",
   description:
-    "Full stack developer building responsive React interfaces, Node.js APIs, PostgreSQL-backed workflows, dashboards, admin panels, and business web applications.",
+    "Full stack developer with 2+ years of experience delivering React.js interfaces, Node.js APIs, PostgreSQL-backed workflows, dashboards, admin panels, and business web applications.",
   url: "https://example.com",
   email: "nitin.k.chavan1001@gmail.com",
   emailMailto: "mailto:nitin.k.chavan1001@gmail.com",
@@ -13,7 +13,7 @@ export const siteConfig = {
   linkedin: "https://www.linkedin.com/",
   whatsapp: "https://wa.me/919325997861",
   messenger: "https://m.me/nitin.k.chavan1001",
-  github: "",
+  github: "https://github.com/NitinChavan7",
   leetcode: "",
   resume: "/resume/nitin-chavan-resume.pdf",
   resumeDownloadName: "Nitin-Chavan-Resume.pdf",

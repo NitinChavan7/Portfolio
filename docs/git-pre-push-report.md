@@ -54,7 +54,7 @@ Review the final candidate list before creating the first commit:
 ```powershell
 git status --short
 git branch -M main
-git remote add origin https://github.com/akshaychavan23031998/Portfolio.git
+git remote add origin https://github.com/NitinChavan7/Portfolio.git
 git add .
 git status --short
 git diff --cached --check
@@ -65,7 +65,7 @@ git push -u origin main
 If `origin` is added manually before these commands, replace `git remote add origin ...` with:
 
 ```powershell
-git remote set-url origin https://github.com/akshaychavan23031998/Portfolio.git
+git remote set-url origin https://github.com/NitinChavan7/Portfolio.git
 ```
 
 No Git staging, commit, push, or deployment action was performed by this audit. No Git remote is currently configured.

@@ -105,7 +105,8 @@ test("resume skills, domains, and email actions are centralized", () => {
   expect(skills).toContain('"Payroll"');
   expect(skills).toContain('"GitLab"');
   expect(experience).toContain('tag: "HRMS"');
-  expect(experience).toContain('tag: "React"');
+  expect(experience).toContain("Intern to Full-time");
+  expect(experience).toContain("Software Developer Intern");
   expect(experience).toContain("Futurionic Private Limited");
   expect(site).toContain('emailMailto: "mailto:nitin.k.chavan1001@gmail.com"');
   expect(site).toContain(

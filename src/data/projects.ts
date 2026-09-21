@@ -79,7 +79,7 @@ export const projects: Project[] = [
       "JWT",
       "Razorpay",
     ],
-    github: "https://github.com/akshaychavan23031998/MERN_Rabbit_Ecommerce",
+    github: "https://github.com/NitinChavan7/MERN_Rabbit_Ecommerce",
     live: "https://mern-rabbit-ecommerce-7e9j.vercel.app/",
     description:
       "A MERN commerce platform with product discovery, cart, checkout, order tracking, admin workflows, live Razorpay payments, and protected routes.",
@@ -126,7 +126,7 @@ export const projects: Project[] = [
       "MongoDB",
       "Gemini API",
     ],
-    github: "https://github.com/akshaychavan23031998/Three-Way-Match-Engine",
+    github: "https://github.com/NitinChavan7/Three-Way-Match-Engine",
     live: "https://three-way-match-engine-web.vercel.app/",
     description:
       "An AI-enabled finance and procurement reconciliation system that compares Purchase Orders, Goods Received Notes, and Invoices to classify records as matched, partially matched, mismatched, or pending.",
@@ -240,7 +240,7 @@ export const projects: Project[] = [
       "Vercel",
     ],
     github:
-      "https://github.com/akshaychavan23031998/TraceGraph-Software-Incident-Dependency-Intelligence",
+      "https://github.com/NitinChavan7/TraceGraph-Software-Incident-Dependency-Intelligence",
     live: "https://trace-graph-software-incident-depen.vercel.app/",
     description:
       "Graph-powered software operations intelligence for exploring service dependencies, investigating incidents, tracing blast radius, finding dependency paths, and discovering relevant incident responders.",
@@ -288,7 +288,7 @@ export const projects: Project[] = [
       "Python",
       "JavaScript",
     ],
-    github: "https://github.com/akshaychavan23031998/Pipeline-Builder",
+    github: "https://github.com/NitinChavan7/Pipeline-Builder",
     live: "https://vector-shift-alpha.vercel.app/",
     description:
       "A visual workflow builder where users can drag, configure, and connect nodes while a FastAPI backend validates whether the resulting pipeline forms a valid directed acyclic graph.",
@@ -331,7 +331,7 @@ export const projects: Project[] = [
       "Google Gemini",
       "ImageKit",
     ],
-    github: "https://github.com/akshaychavan23031998/MERN_AI_QuickBlog_App",
+    github: "https://github.com/NitinChavan7/MERN_AI_QuickBlog_App",
     live: "https://mern-ai-quick-blog-app.vercel.app/",
     description:
       "An AI-powered publishing system with responsive reading pages, an admin workspace, Gemini-assisted generation, optimized uploads, and secure APIs.",
@@ -374,7 +374,7 @@ export const projects: Project[] = [
       "Socket.IO",
       "ImageKit",
     ],
-    github: "https://github.com/akshaychavan23031998/MERN_Chat_App",
+    github: "https://github.com/NitinChavan7/MERN_Chat_App",
     live: "https://mern-chat-app-nine-flame.vercel.app/login",
     description:
       "A real-time messaging product with authentication, responsive conversations, Socket.IO delivery, image handling, and online presence.",
@@ -402,7 +402,7 @@ export const projects: Project[] = [
     },
     categories: ["Frontend"],
     technologies: ["React.js", "REST API", "Tailwind CSS"],
-    github: "https://github.com/akshaychavan23031998/Giphy_Clone",
+    github: "https://github.com/NitinChavan7/Giphy_Clone",
     live: "https://giphy-clone-eight.vercel.app/",
     description:
       "A responsive media discovery experience with search, API integration, reusable components, and resilient loading states.",
@@ -430,7 +430,7 @@ export const projects: Project[] = [
     },
     categories: ["Frontend", "AI"],
     technologies: ["React.js", "Redux", "APIs", "Tailwind CSS"],
-    github: "https://github.com/akshaychavan23031998/Netflix_GPT",
+    github: "https://github.com/NitinChavan7/Netflix_GPT",
     demo: "https://www.linkedin.com/feed/update/urn:li:activity:7195680737310703617/",
     description:
       "A Netflix-inspired movie discovery experience combining Redux state, API-driven catalogues, and AI-assisted recommendations.",
@@ -457,7 +457,7 @@ export const projects: Project[] = [
     },
     categories: ["Frontend", "Motion"],
     technologies: ["React.js", "Framer Motion", "Tailwind CSS"],
-    github: "https://github.com/akshaychavan23031998/ochi_clone",
+    github: "https://github.com/NitinChavan7/ochi_clone",
     demo: "https://www.linkedin.com/feed/update/urn:li:activity:7192917938465611776/",
     description:
       "A responsive recreation of a premium presentation agency with motion-led storytelling and considered interactions.",
@@ -498,8 +498,8 @@ export const projects: Project[] = [
       "Locomotive.js",
       "ScrollTrigger",
     ],
-    github: "https://github.com/akshaychavan23031998/Obys-Agency",
-    live: "https://akshaychavan23031998.github.io/Obys-Agency/",
+    github: "https://github.com/NitinChavan7/Obys-Agency",
+    live: "https://NitinChavan7.github.io/Obys-Agency/",
     description:
       "A creative agency build with GSAP timelines, responsive motion, scroll choreography, and animation-led storytelling.",
     image: "/images/projects/obys-agency.png",
@@ -539,8 +539,8 @@ export const projects: Project[] = [
       "Locomotive.js",
       "ScrollTrigger",
     ],
-    github: "https://github.com/akshaychavan23031998/sundown-clone",
-    live: "https://akshaychavan23031998.github.io/sundown-clone/",
+    github: "https://github.com/NitinChavan7/sundown-clone",
+    live: "https://NitinChavan7.github.io/sundown-clone/",
     description:
       "A motion-led studio website with smooth transitions, responsive sections, and deliberately paced visual effects.",
     image: "/images/projects/sundown-studio.jpg",
@@ -581,8 +581,8 @@ export const projects: Project[] = [
       "Locomotive.js",
       "ScrollTrigger",
     ],
-    github: "https://github.com/akshaychavan23031998/lazarev_clone",
-    live: "https://akshaychavan23031998.github.io/lazarev_clone/",
+    github: "https://github.com/NitinChavan7/lazarev_clone",
+    live: "https://NitinChavan7.github.io/lazarev_clone/",
     description:
       "A digital product agency recreation with interactive sections, timeline animation, responsive behavior, and scroll-linked narrative.",
     image: "/images/projects/lazarev-agency.jpg",

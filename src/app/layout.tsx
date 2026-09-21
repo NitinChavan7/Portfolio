@@ -1,23 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, JetBrains_Mono, Manrope } from "next/font/google";
+import { Inter, JetBrains_Mono, Sora } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { GlobalChrome } from "@/components/layout/global-chrome";
 import { siteConfig } from "@/config/site";
 import "locomotive-scroll/locomotive-scroll.css";
 import "./reference.css";
 
-const geist = Geist({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-geist",
 });
-const manrope = Manrope({
+
+const sora = Sora({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
   variable: "--font-manrope",
 });
+
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -28,8 +30,8 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.title}`,
-    template: `%s — ${siteConfig.name}`,
+    default: `${siteConfig.name} - ${siteConfig.title}`,
+    template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name }],
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${siteConfig.name} — ${siteConfig.title}`,
+    title: `${siteConfig.name} - ${siteConfig.title}`,
     description: siteConfig.description,
     type: "website",
     url: "/",
@@ -53,14 +55,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — ${siteConfig.title}`,
+    title: `${siteConfig.name} - ${siteConfig.title}`,
     description: siteConfig.description,
   },
 };
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#08090c",
+  themeColor: "#071016",
 };
 
 export default function RootLayout({
@@ -85,10 +88,11 @@ export default function RootLayout({
       url: siteConfig.url,
     },
   ];
+
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${manrope.variable} ${jetBrainsMono.variable}`}
+      className={`${inter.variable} ${sora.variable} ${jetBrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body>
