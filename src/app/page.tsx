@@ -144,7 +144,10 @@ function getReferenceBody() {
     "Business Web Apps",
   ];
   const tickerSequence = tickerSkills
-    .map((skill) => `<span>${escapeAttribute(skill)}</span><i>✦</i>`)
+    .map(
+      (skill) =>
+        `<span>${escapeAttribute(skill)}</span><i aria-hidden="true">✦</i>`,
+    )
     .join("");
 
   let homepage = body
@@ -322,8 +325,12 @@ function getReferenceBody() {
     .replaceAll("PRODUCT DELIVERY", "BUSINESS WEB APPS")
     .replaceAll("PERFORMANCE ENGINEERING", "DEBUGGING & OPTIMIZATION")
     .replace(
+      '<div class="ticker" aria-hidden="true">',
+      '<div class="ticker" role="region" aria-label="Technical skills; scroll horizontally to explore" tabindex="0" data-lenis-prevent>',
+    )
+    .replace(
       /<div class="ticker-track">[\s\S]*?<\/div>/,
-      `<div class="ticker-track">${tickerSequence}${tickerSequence}</div>`,
+      `<div class="ticker-track"><div class="ticker-group">${tickerSequence}</div><div class="ticker-group" aria-hidden="true">${tickerSequence}</div></div>`,
     )
     .replace(
       /<div class="metrics reveal">[\s\S]*?<\/div>\s*<\/div>\s*<\/section>\s*<section class="section" id="about">/,
@@ -523,7 +530,10 @@ function getReferenceBody() {
     )
     .replace("Project inquiry", "Role or product discussion")
     .replace("EmailJS integration ready", "Direct message ready")
-    .replace("Tell me about the role, product or problem...", "Tell me about the role, product or requirement...")
+    .replace(
+      "Tell me about the role, product or problem...",
+      "Tell me about the role, product or requirement...",
+    )
     .replace(
       /<a\s+class="btn magnetic"\s+href="https:\/\/github\.com\/NitinChavan7"[\s\S]*?<\/a\s*>/,
       "",
@@ -540,12 +550,12 @@ function getReferenceBody() {
       /<span>© 2026 Nitin Chavan · Bengaluru, India<\/span\s*>/,
       "<span>© 2026 Nitin Chavan · Hyderabad, India</span>",
     )
-    .replace(
-      /<button class="icon-btn" id="show404">View 404<\/button>/,
-      "",
-    )
+    .replace(/<button class="icon-btn" id="show404">View 404<\/button>/, "")
     .replace(/(<a href="#top">Back to top ↑<\/a>)\s*·\s*<\/span>/, "$1</span>")
-    .replace(/(<a href="#top">Back to top ↑<\/a>)\s*·\s*(\s*<\/span\s*>)/, "$1$2")
+    .replace(
+      /(<a href="#top">Back to top ↑<\/a>)\s*·\s*(\s*<\/span\s*>)/,
+      "$1$2",
+    )
     .replace("Contact Nitin", "Contact Nitin");
 
   homepage = homepage
