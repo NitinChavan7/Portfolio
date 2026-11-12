@@ -35,7 +35,7 @@ test("homepage preserves the reference structure and interactions", async ({
     "Ship / Measure",
   ]);
   await expect(page.locator(".ring .sat")).toHaveCount(2);
-  await expect(page.locator(".project")).toHaveCount(12);
+  await expect(page.locator(".project")).toHaveCount(13);
   const matchEngineCard = page.locator(".project", {
     hasText: "Three-Way Match Engine",
   });
@@ -90,24 +90,23 @@ test("homepage preserves the reference structure and interactions", async ({
   ).toHaveAttribute("data-case-study-slug", "pipeline-builder");
   await expect(
     pipelineCard.getByRole("link", { name: /source code/i }),
-  ).toHaveAttribute(
-    "href",
-    "https://github.com/NitinChavan7/Pipeline-Builder",
-  );
+  ).toHaveAttribute("href", "https://github.com/NitinChavan7/Pipeline-Builder");
   await expect(
     pipelineCard.getByRole("link", { name: /live application/i }),
   ).toHaveAttribute("href", "https://vector-shift-alpha.vercel.app/");
   await expect(pipelineCard.locator(".project-links a")).toHaveCount(2);
-  await expect(page.locator(".project > .pills")).toHaveCount(12);
-  await expect(page.locator(".project .case")).toHaveCount(12);
+  await expect(page.locator(".project > .pills")).toHaveCount(13);
+  await expect(page.locator(".project .case")).toHaveCount(13);
   for (const card of await page.locator(".project").all()) {
     const chips = card.locator(":scope > .pills .pill");
     expect(await chips.count()).toBeGreaterThan(0);
     expect(await chips.count()).toBeLessThanOrEqual(6);
   }
-  await expect(page.locator(".project.featured .placeholder")).toContainText(
-    "Auth",
+  await expect(page.locator(".project.featured")).toHaveAttribute(
+    "data-project-slug",
+    "docmind-ai",
   );
+  await expect(page.locator(".project.featured h3")).toHaveText("DocMind AI");
   await expect(page.locator(".project.featured .case")).toHaveCount(1);
   await expect(
     page.locator('a[href="/projects/pipeline-builder"]'),
@@ -129,7 +128,7 @@ test("homepage preserves the reference structure and interactions", async ({
   }
 
   await page.locator('.filter[data-filter="ai"]').click();
-  await expect(page.locator(".project:not(.hidden)")).toHaveCount(3);
+  await expect(page.locator(".project:not(.hidden)")).toHaveCount(4);
   await expect(
     page.locator(".project:not(.hidden)", {
       hasText: "Three-Way Match Engine",
@@ -142,13 +141,13 @@ test("homepage preserves the reference structure and interactions", async ({
     page.locator(".project:not(.hidden)", { hasText: "TraceGraph" }),
   ).toHaveCount(0);
   await page.locator('.filter[data-filter="fullstack"]').click();
-  await expect(page.locator(".project:not(.hidden)")).toHaveCount(6);
+  await expect(page.locator(".project:not(.hidden)")).toHaveCount(7);
   await page.locator('.filter[data-filter="frontend"]').click();
   await expect(page.locator(".project:not(.hidden)")).toHaveCount(7);
   await page.locator('.filter[data-filter="backend"]').click();
-  await expect(page.locator(".project:not(.hidden)")).toHaveCount(6);
+  await expect(page.locator(".project:not(.hidden)")).toHaveCount(7);
   await page.locator('.filter[data-filter="all"]').click();
-  await expect(page.locator(".project:not(.hidden)")).toHaveCount(12);
+  await expect(page.locator(".project:not(.hidden)")).toHaveCount(13);
 
   expect(
     await page.evaluate(
@@ -327,8 +326,8 @@ test("all project case studies share one modal without changing history", async 
   await page.waitForTimeout(1900);
   const initialUrl = page.url();
   const cases = page.locator(".project .case");
-  await expect(cases).toHaveCount(12);
-  for (let index = 0; index < 12; index += 1) {
+  await expect(cases).toHaveCount(13);
+  for (let index = 0; index < 13; index += 1) {
     const trigger = cases.nth(index);
     const slug = await trigger.getAttribute("data-case-study-slug");
     await trigger.click();
@@ -665,6 +664,7 @@ test("local images, résumé download, and ticker alignment are correct", async 
   page,
 }) => {
   const projectPaths = [
+    "/images/projects/docmind-ai.png",
     "/images/projects/rabbit-ecommerce.png",
     "/images/projects/three-way-engine.png",
     "/images/projects/tracegraph.png",
@@ -688,7 +688,7 @@ test("local images, résumé download, and ticker alignment are correct", async 
   await page.waitForTimeout(1900);
 
   const projectImages = page.locator(".project .visual img");
-  await expect(projectImages).toHaveCount(12);
+  await expect(projectImages).toHaveCount(13);
   for (const [index, assetPath] of projectPaths.entries()) {
     await expect(projectImages.nth(index)).toHaveAttribute(
       "src",
@@ -734,9 +734,9 @@ test("local images, résumé download, and ticker alignment are correct", async 
     "Akshay-Ram-Chavan-Resume.pdf",
   );
   await expect(resume).not.toHaveAttribute("target", "_blank");
-  expect(
-    (await page.request.get("/resume/nitin-chavan-resume.pdf")).ok(),
-  ).toBe(true);
+  expect((await page.request.get("/resume/nitin-chavan-resume.pdf")).ok()).toBe(
+    true,
+  );
 
   expect(
     await page.evaluate(() => {
@@ -812,7 +812,7 @@ test("profile, actions, skills, domains, and full-width project media are correc
   }
 
   const capabilityCards = page.locator(".stack-card");
-  await expect(capabilityCards).toHaveCount(6);
+  await expect(capabilityCards).toHaveCount(9);
   const frontend = capabilityCards.filter({ hasText: "Frontend Systems" });
   const backend = capabilityCards.filter({ hasText: "Backend & APIs" });
   const delivery = capabilityCards.filter({ hasText: "Quality & Delivery" });
@@ -862,12 +862,12 @@ test("profile, actions, skills, domains, and full-width project media are correc
         };
       }),
     );
-  expect(mediaResults).toHaveLength(12);
+  expect(mediaResults).toHaveLength(13);
   for (const [index, media] of mediaResults.entries()) {
     expect(media.widthDelta).toBeLessThanOrEqual(2);
     expect(media.maxWidth).toBe("none");
     expect(media.objectFit).toBe(
-      [1, 2, 3].includes(index) ? "contain" : "cover",
+      [0, 2, 3, 4].includes(index) ? "contain" : "cover",
     );
     expect(media.aspectRatio).toBeGreaterThan(1);
   }

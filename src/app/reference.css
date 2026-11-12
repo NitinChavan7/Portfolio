@@ -4065,6 +4065,23 @@ nav {
   }
 }
 
+/* Keep the featured product preview full-width at its native proportions. */
+#projects .project[data-project-slug="docmind-ai"] .visual {
+  height: auto;
+  aspect-ratio: 40 / 19;
+  flex-shrink: 0;
+  background: #f7f8f2;
+}
+
+#projects .project[data-project-slug="docmind-ai"] .visual img {
+  object-fit: contain;
+  object-position: center;
+}
+
+#projects .project[data-project-slug="docmind-ai"]:hover .screen {
+  transform: none;
+}
+
 /* Premium delivery signals section */
 .section:has(.signal-grid) {
   padding-top: clamp(82px, 8vw, 118px);

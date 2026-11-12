@@ -30,6 +30,7 @@ export type Project = {
   categories: string[];
   technologies: string[];
   github: string;
+  backendGithub?: string;
   live?: string;
   demo?: string;
   description: string;
@@ -39,6 +40,73 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    title: "DocMind AI",
+    slug: "docmind-ai",
+    label: "RAG-BASED PDF QUESTION ANSWERING",
+    hasCaseStudy: false,
+    showTechnologiesOnCard: true,
+    cardTechnologies: [
+      "React.js",
+      "Node.js",
+      "MongoDB",
+      "Qdrant Cloud",
+      "Groq API",
+      "Supabase Storage",
+    ],
+    caseStudy: {
+      summary:
+        "An AI-powered PDF question answering application built with Retrieval-Augmented Generation (RAG). Users upload PDF documents and ask questions about their content, with answers streamed in real time.",
+      problem:
+        "Help users find answers in their PDF documents while keeping document access private and responses grounded in relevant content.",
+      solution:
+        "A React.js frontend connects to Node.js and Express.js APIs. Extracted PDF text is split into overlapping chunks and converted into 384-dimensional embeddings using all-MiniLM-L6-v2. Qdrant Cloud stores the vectors and retrieves relevant document content through semantic search. The retrieved context is passed to an LLM through the Groq API to generate answers.",
+      architecture:
+        "PDF upload → Supabase Storage → Text extraction → Overlapping chunks → all-MiniLM-L6-v2 embeddings → Qdrant Cloud semantic search → Groq API → SSE response streaming",
+      architectureNote:
+        "MongoDB supports the application data layer. PDFs are stored privately in Supabase with user-specific document access controls.",
+      features: [
+        "Upload PDF documents and ask questions about their content.",
+        "Extract PDF text and create overlapping chunks with 384-dimensional text embeddings.",
+        "Retrieve relevant document content using Qdrant Cloud vector storage and semantic search.",
+        "Generate context-aware answers through Groq API, with prompts designed to handle spelling mistakes and conversational follow-up questions.",
+        "Stream AI responses in real time using Server-Sent Events (SSE).",
+        "Store PDFs privately in Supabase and restrict document access to the owning user.",
+      ],
+      engineeringFocus: [
+        "Retrieval-Augmented Generation (RAG)",
+        "Overlapping text chunking",
+        "384-dimensional embeddings with all-MiniLM-L6-v2",
+        "Vector storage and semantic search",
+        "Prompt engineering and conversational context",
+        "SSE response streaming",
+        "Private storage and user-specific document access",
+      ],
+      result:
+        "A document question answering workflow that combines semantic retrieval, context-aware LLM answers, real-time streaming, and private PDF access.",
+    },
+    categories: ["Full Stack", "Backend", "AI", "Realtime"],
+    technologies: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Qdrant Cloud",
+      "Groq API",
+      "Supabase Storage",
+      "all-MiniLM-L6-v2",
+      "Server-Sent Events (SSE)",
+    ],
+    github: "https://github.com/NitinChavan7/docmind-ai-frontend",
+    backendGithub: "https://github.com/NitinChavan7/docmind-ai-backend",
+    live: "https://docmind-ai-app.vercel.app/",
+    description:
+      "A RAG-based PDF assistant with semantic search, context-aware answers, real-time SSE streaming, and private document access. Built with Qdrant Cloud, Groq API, and Supabase Storage.",
+    image: "/images/projects/docmind-ai.png",
+    imageAlt:
+      "DocMind AI PDF assistant landing page with document upload and question answering",
+    imageFit: "contain",
+  },
   {
     title: "Rabbit – MERN Stack E-Commerce App",
     slug: "rabbit-ecommerce",

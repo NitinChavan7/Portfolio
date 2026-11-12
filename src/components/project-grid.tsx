@@ -105,8 +105,21 @@ export function ProjectGrid() {
                     rel="noopener noreferrer"
                   >
                     <CodeXml size={16} />
-                    {project.hasCaseStudy === false ? "Code" : "GitHub"}
+                    {project.backendGithub
+                      ? "Frontend"
+                      : project.hasCaseStudy === false
+                        ? "Code"
+                        : "GitHub"}
                   </a>
+                  {project.backendGithub && (
+                    <a
+                      href={project.backendGithub}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <CodeXml size={16} /> Backend
+                    </a>
+                  )}
                   {(project.live || project.demo) && (
                     <a
                       href={project.live || project.demo}

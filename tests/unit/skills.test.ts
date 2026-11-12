@@ -2,9 +2,12 @@ import { skillGroups } from "@/data/skills";
 
 test("resume skill groups stay organized around Nitin's full stack profile", () => {
   expect(skillGroups.map((group) => group.title)).toEqual([
+    "Languages",
     "Frontend Engineering",
     "Backend & API Integration",
     "Database & Querying",
+    "AI & GenAI (Project Experience)",
+    "AI & Cloud Tools",
     "Product Domains",
     "Quality & Testing",
     "Delivery Tools",

@@ -2,6 +2,7 @@ import { existsSync, readdirSync } from "node:fs";
 import { caseStudyProjects, projects } from "@/data/projects";
 
 const expectedOrder = [
+  "docmind-ai",
   "rabbit-ecommerce",
   "three-way-match-engine",
   "tracegraph",
@@ -141,10 +142,10 @@ test("the TraceGraph image is used directly without a duplicate", () => {
 });
 
 test("project order and uniqueness are preserved around the insertion", () => {
-  expect(projects).toHaveLength(12);
+  expect(projects).toHaveLength(13);
   expect(projects.map((project) => project.slug)).toEqual(expectedOrder);
-  expect(new Set(projects.map((project) => project.slug)).size).toBe(12);
-  expect(new Set(projects.map((project) => project.title)).size).toBe(12);
+  expect(new Set(projects.map((project) => project.slug)).size).toBe(13);
+  expect(new Set(projects.map((project) => project.title)).size).toBe(13);
 });
 
 test("technology metadata remains intact while all card chips are enabled", () => {

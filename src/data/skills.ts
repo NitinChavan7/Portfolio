@@ -1,10 +1,15 @@
 export const skillGroups = [
   {
+    title: "Languages",
+    skills: ["JavaScript (ES6+)", "TypeScript", "SQL"],
+  },
+  {
     title: "Frontend Engineering",
     skills: [
       "React.js",
+      "Next.js",
       "Redux",
-      "JavaScript",
+      "Redux Toolkit",
       "HTML5",
       "CSS3",
       "Tailwind CSS",
@@ -20,6 +25,8 @@ export const skillGroups = [
       "Node.js",
       "Express.js",
       "REST APIs",
+      "JWT Authentication",
+      "Server-Sent Events (SSE)",
       "API Integration",
       "Form Validation",
       "API Response Handling",
@@ -31,12 +38,26 @@ export const skillGroups = [
     title: "Database & Querying",
     skills: [
       "PostgreSQL",
-      "SQL",
+      "MongoDB",
       "PostgreSQL Queries",
       "Data Loading",
       "Data Validation",
       "Business Workflows",
     ],
+  },
+  {
+    title: "AI & GenAI (Project Experience)",
+    skills: [
+      "RAG Fundamentals",
+      "Prompt Engineering",
+      "Text Embeddings",
+      "Semantic Search",
+      "LLM API Integration",
+    ],
+  },
+  {
+    title: "AI & Cloud Tools",
+    skills: ["Groq API", "Qdrant Cloud", "Supabase Storage", "Gemini API"],
   },
   {
     title: "Product Domains",

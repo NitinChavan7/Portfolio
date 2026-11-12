@@ -56,7 +56,10 @@ function optimizedImage({
   }>`;
 }
 
-function referenceProjectCard(project: (typeof projects)[number]) {
+function referenceProjectCard(
+  project: (typeof projects)[number],
+  index: number,
+) {
   const categories = project.categories
     .map((category) => category.toLowerCase().replaceAll(" ", ""))
     .join(" ");
@@ -69,8 +72,8 @@ function referenceProjectCard(project: (typeof projects)[number]) {
     )
     .join("")}</div>`;
 
-  return `<article class="project reveal" data-cat="${escapeAttribute(categories)}">
-    <span class="project-num">02 / ${escapeAttribute(project.label ?? project.categories[0])}</span>
+  return `<article class="project${index === 0 ? " featured" : ""} reveal" data-cat="${escapeAttribute(categories)}">
+    <span class="project-num">${String(index + 1).padStart(2, "0")} / ${escapeAttribute(project.label ?? project.categories[0])}</span>
     <h3>${escapeAttribute(project.title)}</h3>
     <p>${escapeAttribute(project.description)}</p>
     <div class="visual"><div class="screen"></div></div>
@@ -78,7 +81,8 @@ function referenceProjectCard(project: (typeof projects)[number]) {
     <div class="project-meta">
       <div class="project-links">
         <button class="mini case" type="button" data-case-study-slug="${escapeAttribute(project.slug)}">Case study</button>
-        <a class="mini" href="${escapeAttribute(project.github)}" target="_blank" rel="noopener noreferrer" aria-label="View ${escapeAttribute(project.title)} source code">Code ↗</a>
+        <a class="mini" href="${escapeAttribute(project.github)}" target="_blank" rel="noopener noreferrer" aria-label="View ${escapeAttribute(project.title)}${project.backendGithub ? " frontend" : ""} source code">${project.backendGithub ? "Frontend" : "Code"} ↗</a>
+        ${project.backendGithub ? `<a class="mini" href="${escapeAttribute(project.backendGithub)}" target="_blank" rel="noopener noreferrer" aria-label="View ${escapeAttribute(project.title)} backend source code">Backend ↗</a>` : ""}
         <a class="mini" href="${escapeAttribute(project.live ?? "")}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttribute(project.title)} live application">Live ↗</a>
       </div>
     </div>
@@ -164,21 +168,15 @@ function getReferenceBody() {
       }).slice(5, -1),
     );
 
-  const projectsWithoutCaseStudies = projects.filter(
-    (project) => project.hasCaseStudy === false,
+  let projectsRendered = false;
+  homepage = homepage.replace(
+    /<article\s+class="project(?: featured)? reveal"[\s\S]*?<\/article>/g,
+    () => {
+      if (projectsRendered) return "";
+      projectsRendered = true;
+      return projects.map(referenceProjectCard).join("");
+    },
   );
-  if (projectsWithoutCaseStudies.length > 0) {
-    homepage = homepage.replace(
-      '<article class="project reveal" data-cat="fullstack ai backend">',
-      `${projectsWithoutCaseStudies.map(referenceProjectCard).join("")}<article class="project reveal" data-cat="fullstack ai backend">`,
-    );
-    let projectNumber = 0;
-    homepage = homepage.replace(
-      /(<span class="project-num">)\d{2}(\s*\/)/g,
-      (_match, opening: string, separator: string) =>
-        `${opening}${String(++projectNumber).padStart(2, "0")}${separator}`,
-    );
-  }
 
   projects.forEach((project, index) => {
     homepage = homepage.replace(

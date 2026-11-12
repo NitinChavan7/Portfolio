@@ -327,8 +327,18 @@ export function ProjectCaseStudyModal() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Code ↗
+              {project.backendGithub ? "Frontend ↗" : "Code ↗"}
             </a>
+            {project.backendGithub && (
+              <a
+                className="mini"
+                href={project.backendGithub}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Backend ↗
+              </a>
+            )}
             {externalUrl && (
               <a
                 className="mini"

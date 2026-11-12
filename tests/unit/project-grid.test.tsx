@@ -31,7 +31,7 @@ describe("Project filters", () => {
     expect(screen.getByText("Three-Way Match Engine")).toBeInTheDocument();
     expect(screen.queryByText("Pipeline Builder")).not.toBeInTheDocument();
     expect(screen.getAllByRole("button", { name: "Case study" })).toHaveLength(
-      3,
+      4,
     );
   });
 

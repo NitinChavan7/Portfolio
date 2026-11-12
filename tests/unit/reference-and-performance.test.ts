@@ -88,7 +88,7 @@ test("local assets and résumé configuration are centralized", () => {
     readFileSync("src/components/command-palette.tsx", "utf8"),
   ].join("\n");
 
-  expect(projects.match(/\/images\/projects\//g)).toHaveLength(12);
+  expect(projects.match(/\/images\/projects\//g)).toHaveLength(13);
   expect(testimonials.match(/\/images\/testimonials\//g)).toHaveLength(4);
   expect(site).toContain('resume: "/resume/nitin-chavan-resume.pdf"');
   expect(site).toContain('resumeDownloadName: "Nitin-Chavan-Resume.pdf"');
@@ -100,7 +100,7 @@ test("resume skills, domains, and email actions are centralized", () => {
   const experience = readFileSync("src/data/experience.ts", "utf8");
   const site = readFileSync("src/config/site.ts", "utf8");
 
-  expect(skills.match(/"JavaScript"/g)).toHaveLength(1);
+  expect(skills.match(/"JavaScript \(ES6\+\)"/g)).toHaveLength(1);
   expect(skills).toContain('"PostgreSQL"');
   expect(skills).toContain('"Payroll"');
   expect(skills).toContain('"GitLab"');
